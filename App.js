@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const parent = React.createElement(
   "div",
   {
@@ -12,14 +15,14 @@ const parent = React.createElement(
       },
       [
         React.createElement(
-          "div",
+          "h1",
           {
             key: 11,
           },
           "sibling 1"
         ),
         React.createElement(
-          "div",
+          "h2",
           {
             key: 12,
           },
@@ -36,14 +39,14 @@ const parent = React.createElement(
       },
       [
         React.createElement(
-          "div",
+          "h1",
           {
             key: 21,
           },
           "sibling 1"
         ),
         React.createElement(
-          "div",
+          "h2",
           {
             key: 22,
           },
