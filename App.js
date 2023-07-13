@@ -1,60 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement(
-  "div",
-  {
-    id: "parent",
-  },
-  [
-    React.createElement(
-      "div",
-      {
-        id: "child1",
-        key: 1,
-      },
-      [
-        React.createElement(
-          "h1",
-          {
-            key: 11,
-          },
-          "sibling 1"
-        ),
-        React.createElement(
-          "h2",
-          {
-            key: 12,
-          },
-          "sibling 2"
-        ),
-      ]
-    ),
+// JSX => bable transpiles it to React.createElement => ReactElement( JS Object) => HTML
 
-    React.createElement(
-      "div",
-      {
-        id: "child2",
-        key: 2,
-      },
-      [
-        React.createElement(
-          "h1",
-          {
-            key: 21,
-          },
-          "sibling 1"
-        ),
-        React.createElement(
-          "h2",
-          {
-            key: 22,
-          },
-          "sibling 2"
-        ),
-      ]
-    ),
-  ]
+const parent = (
+  <div>
+    <div id="child1">
+      <h1>sibling 1</h1>
+      <h2>sibling 2</h2>
+    </div>
+    <div id="child2">
+      <h1>sibling 1</h1>
+      <h2>sibling 2</h2>
+    </div>
+  </div>
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

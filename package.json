@@ -2,8 +2,9 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "Practice repo based on Namaste React [original]",
-  "main": "App.js",
   "scripts": {
+    "dev": "parcel index.html",
+    "prod": "parcel build index.html",
     "test": "jest"
   },
   "author": "Anand",
