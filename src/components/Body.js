@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import React, { useContext, useEffect, useState } from "react";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -11,6 +12,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   const { isUserOnline } = useOnlineStatus();
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -39,6 +42,8 @@ const Body = () => {
 
   if (isUserOnline === false)
     return <h1>Looks like you are offline, Please check your internet!!</h1>;
+
+  const { setUserName, loginUser } = useContext(UserContext);
 
   return filteredRes.length === 0 ? (
     <Shimmer />
@@ -70,11 +75,23 @@ const Body = () => {
             Top rated restaurant
           </button>
         </div>
+        <div className="p-4 flex items-center ">
+          <label>UserName:</label>
+          <input
+            value={loginUser}
+            className="border border-black p-2"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRes.map((res) => (
           <Link to={`/restaurant/${res.data.id}`} key={res.data.uuid}>
-            <RestaurantCard data={res} />
+            {res.data.promoted ? (
+              <RestaurantCardPromoted data={res} />
+            ) : (
+              <RestaurantCard data={res} />
+            )}
           </Link>
         ))}
       </div>
