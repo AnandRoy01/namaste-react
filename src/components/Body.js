@@ -23,8 +23,14 @@ const Body = () => {
     if (listOfRestaurants.length === 0) {
       const data = await fetch(API_URL);
       const json = await data.json();
-      setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRes(json?.data?.cards[2]?.data?.data?.cards);
+      setListOfRestaurants(
+        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilteredRes(
+        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
     }
   };
 
@@ -86,11 +92,11 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap">
         {filteredRes.map((res) => (
-          <Link to={`/restaurant/${res.data.id}`} key={res.data.uuid}>
-            {res.data.promoted ? (
-              <RestaurantCardPromoted data={res} />
+          <Link to={`/restaurant/${res?.info.id}`} kkey={res?.info.id}>
+            {res?.info.promotedd ? (
+              <RestaurantCardPromoted data={res?.info} />
             ) : (
-              <RestaurantCard data={res} />
+              <RestaurantCard data={res?.info} />
             )}
           </Link>
         ))}
