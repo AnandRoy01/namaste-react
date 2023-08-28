@@ -41,7 +41,7 @@ const Body = () => {
   const filterResOnSearch = () => {
     setFilteredRes(
       listOfRestaurants.filter((res) =>
-        res.data.name.toLowerCase().includes(searchText.toLowerCase())
+        res.info.name.toLowerCase().includes(searchText.toLowerCase())
       )
     );
   };
@@ -58,6 +58,7 @@ const Body = () => {
       <div className="filter flex ">
         <div className="search my-4 p-4">
           <input
+            data-testid="searchInput"
             type="text"
             className="border border-solid border-black"
             value={searchText}
