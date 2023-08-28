@@ -12,6 +12,7 @@ global.fetch = jest.fn(() => {
     },
   });
 });
+
 it("should search res List for KFC", async () => {
   await act(async () =>
     render(
